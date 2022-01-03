@@ -15,35 +15,32 @@ class LandingPage extends StatelessWidget {
                 bottomLeft: Radius.circular(24),
                 bottomRight: Radius.circular(24))),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Hello, Adit",
-                      style: secondaryTextStyle.copyWith(
-                          fontSize: 16, fontWeight: semiBold),
-                    ),
-                    Container(
-                      width: 25,
-                      height: 16,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/hambuger-menu.png"))),
-                    )
-                  ],
-                ),
-                Text(
-                  "There’s anything you need?",
-                  style: secondaryTextStyle.copyWith(
-                      fontWeight: light, fontSize: 12),
-                )
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Hello, Adit",
+                    style: secondaryTextStyle.copyWith(
+                        fontSize: 16, fontWeight: semiBold),
+                  ),
+                  Container(
+                    width: 25,
+                    height: 25,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/cartIcon.png"))),
+                  )
+                ],
+              ),
+              Text(
+                "There’s anything you need?",
+                style: secondaryTextStyle.copyWith(
+                    fontWeight: light, fontSize: 12),
+              )
+            ],
           ),
         ),
       );

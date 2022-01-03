@@ -12,7 +12,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Timer(Duration(seconds: 3),
-        () => Navigator.pushNamed(context, '/landing-page'));
+        () => Navigator.pushNamed(context, '/intro-page'));
     super.initState();
   }
 
@@ -22,8 +22,10 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: backgroundColor2,
       body: Center(
         child: Image.asset(
-          "assets/logo.png",
-          width: 200,
+          "assets/logo_splash.png",
+          width: 280,
+          height: 317.46,
+          fit: BoxFit.cover,
         ),
       ),
     );

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: HomePage(),
       // routes: {
       //   '/': (context) => SplashPage(),
       //   '/intro-page': (context) => IntroPage(),

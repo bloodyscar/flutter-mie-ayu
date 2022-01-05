@@ -6,6 +6,7 @@ import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_screen.dart';
+import 'package:mie_ayu_rawalumbu/pages/map_screen.dart';
 
 import 'package:mie_ayu_rawalumbu/pages/splash_page.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: MapScreen(),
       // routes: {
       //   '/': (context) => SplashPage(),
       //   '/intro-page': (context) => IntroPage(),

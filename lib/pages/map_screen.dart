@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -12,38 +13,55 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  late GoogleMapController _controller;
+  Completer<GoogleMapController> _controller = Completer();
   List<Marker> markers = [];
   CameraPosition initCamera =
-      CameraPosition(target: LatLng(-6.259759, 107.012631), zoom: 15);
+      CameraPosition(target: LatLng(-6.269381, 107.004175), zoom: 17);
 
-  addMarker() {
-    int id = Random().nextInt(100);
-    setState(() {
-      markers.add(
-        Marker(
-          markerId: MarkerId(
-            id.toString(),
-          ),
-          position: LatLng(-6.259759, 107.012631),
-        ),
-      );
-    });
-  }
+  static final Marker _homeMarker = Marker(
+    markerId: MarkerId('_kGooglePlex'),
+    infoWindow: InfoWindow(title: "My Home"),
+    icon: BitmapDescriptor.defaultMarker,
+    position: LatLng(
+      -6.269381,
+      107.004175,
+    ),
+  );
+
+  static final Marker _mieAyuMarker = Marker(
+    markerId: MarkerId('_mieAyu'),
+    infoWindow: InfoWindow(title: "Mie Ayu Rawalumbu"),
+    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+    position: LatLng(
+      -6.2668805,
+      107.0052591,
+    ),
+  );
+
+  static final Polyline _kPolyLine =
+      Polyline(polylineId: PolylineId("_kPolyLineId"), width: 4, points: [
+    LatLng(
+      -6.269381,
+      107.004175,
+    ),
+    LatLng(
+      -6.2668805,
+      107.0052591,
+    ),
+  ]);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: GoogleMap(
-            onTap: (coordinate) {
-              _controller.animateCamera(CameraUpdate.newLatLng(coordinate));
-            },
-            markers: markers.toSet(),
-            mapType: MapType.normal,
-            initialCameraPosition: initCamera,
-            onMapCreated: (GoogleMapController controller) {
-              _controller = controller;
-              addMarker();
-            }));
+      body: GoogleMap(
+        markers: {_homeMarker, _mieAyuMarker},
+        polylines: {_kPolyLine},
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+        mapType: MapType.normal,
+        initialCameraPosition: initCamera,
+      ),
+    );
   }
 }

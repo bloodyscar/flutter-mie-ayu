@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/button.dart';
 
@@ -90,13 +92,12 @@ class IntroPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Button(
-                      title: "Login",
-                      width: 146,
-                      height: 50,
-                      bgColor: Colors.black,
-                      textColor: Colors.white,
-                      textSize: 18),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(LoginPage());
+                    },
+                    child: Text("LOGIN"),
+                  ),
                   SizedBox(
                     width: 20,
                   ),

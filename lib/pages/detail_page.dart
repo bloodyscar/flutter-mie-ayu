@@ -11,10 +11,10 @@ class DetailPage extends StatelessWidget {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: MediaQuery.of(context).size.height * 0.4,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/miegoreng.jpg"),
+                    image: AssetImage("assets/img-mie.png"),
                     fit: BoxFit.cover)),
           ),
           SafeArea(
@@ -59,7 +59,9 @@ class DetailPage extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(24), topLeft: Radius.circular(24)),
+                topRight: Radius.circular(24),
+                topLeft: Radius.circular(24),
+              ),
               color: backgroundColor1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +69,7 @@ class DetailPage extends StatelessWidget {
               Text(
                 "Bakmie Goreng Spesial",
                 style:
-                    primartyTextStyle.copyWith(fontSize: 18, fontWeight: bold),
+                    primartyTextStyle.copyWith(fontSize: 20, fontWeight: bold),
               ),
               Text(
                 "Mie  •  Gratis Ongkir",
@@ -94,8 +96,10 @@ class DetailPage extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        "Bakmi adalah salah satu jenis sajian mi yang dipopulerkan oleh pedagang-pedagang Tiongkok ke Indonesia. Mie Goreng dengan isian sayur, ayam, telur dan bakso. Ditambah dengan telur dadar atau ceplok",
-                        style: TextStyle(color: Color(0xffA1A1A1)),
+                        "Mie goreng spesial dengan isian sayuran, telur, ayam dan bakso sapi, ditambah dengan telur dadar / ceplok",
+                        style: thirdTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
                       ),
                     ],
                   ),
@@ -150,7 +154,7 @@ class DetailPage extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: backgroundColor1,
-        body: ListView(
+        body: Column(
           children: [
             header(),
             content(),

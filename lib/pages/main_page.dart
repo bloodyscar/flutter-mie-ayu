@@ -40,9 +40,7 @@ class _MainPageState extends State<MainPage> {
             });
           },
           currentIndex: currentIndex,
-          selectedLabelStyle: TextStyle(
-            color: backgroundColor1,
-          ),
+          fixedColor: Colors.black,
           items: [
             BottomNavigationBarItem(
               backgroundColor: backgroundColor2,

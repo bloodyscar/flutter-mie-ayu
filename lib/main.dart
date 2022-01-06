@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
       create: (context) => GoogleMapProvider(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: IntroPage(),
-        // routes: {
-        //   '/': (context) => SplashPage(),
-        //   '/intro-page': (context) => IntroPage(),
-        //   '/login-page': (context) => LoginPage(),
-        //   '/home-page': (context) => HomePage(),
-        // },
+        // home: IntroPage(),
+        routes: {
+          '/': (context) => SplashPage(),
+          '/intro-page': (context) => IntroPage(),
+          '/login-page': (context) => LoginPage(),
+          '/home-page': (context) => HomePage(),
+        },
       ),
     );
   }

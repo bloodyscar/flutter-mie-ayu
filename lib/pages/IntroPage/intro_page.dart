@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/pages/AuthPage/registration_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/button.dart';
@@ -113,7 +114,7 @@ class _IntroPageState extends State<IntroPage> {
                       }).toList(),
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 60),
+                      margin: EdgeInsets.symmetric(vertical: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -121,18 +122,37 @@ class _IntroPageState extends State<IntroPage> {
                             onPressed: () {
                               Get.to(LoginPage());
                             },
-                            child: Text("LOGIN"),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.black,
+                              fixedSize: const Size(120, 50),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: Text(
+                              "Login",
+                              style: primartyTextStyle.copyWith(fontSize: 16),
+                            ),
                           ),
                           SizedBox(
                             width: 20,
                           ),
-                          Button(
-                              title: "Register",
-                              width: 146,
-                              height: 50,
-                              bgColor: Colors.black,
-                              textColor: Colors.white,
-                              textSize: 18),
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.to(RegistrationPage());
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.black,
+                              fixedSize: const Size(120, 50),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: Text(
+                              "Register",
+                              style: primartyTextStyle.copyWith(fontSize: 16),
+                            ),
+                          ),
                         ],
                       ),
                     ),

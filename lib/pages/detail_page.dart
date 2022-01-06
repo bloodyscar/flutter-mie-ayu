@@ -67,7 +67,7 @@ class DetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Bakmie Goreng Spesial",
+                "Mie Goreng Spesial",
                 style:
                     primartyTextStyle.copyWith(fontSize: 20, fontWeight: bold),
               ),

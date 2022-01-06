@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/pages/AuthPage/registration_page.dart';
-import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/main_page.dart';
 import 'package:mie_ayu_rawalumbu/service/auth_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/loading_button.dart';
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     handleSignInEmailPassword() async {
       if (await AuthService()
           .signInEmailPassword(emailController.text, passwordController.text)) {
-        Get.to(HomePage());
+        Get.to(MainPage());
       }
     }
 
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => HomePage(),
+            builder: (_) => MainPage(),
           ),
         );
       } else {
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => HomePage(),
+            builder: (_) => MainPage(),
           ),
         );
       } else {
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(),
+                  builder: (context) => MainPage(),
                 ),
               );
             },

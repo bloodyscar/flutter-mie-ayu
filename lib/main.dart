@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       create: (context) => GoogleMapProvider(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: IntroPage(),
         // routes: {
         //   '/': (context) => SplashPage(),
         //   '/intro-page': (context) => IntroPage(),

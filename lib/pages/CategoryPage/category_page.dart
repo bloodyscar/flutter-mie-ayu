@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/category_list_widget.dart';
 import 'package:mie_ayu_rawalumbu/widget/popular_card.dart';
+import 'package:provider/provider.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -25,8 +27,6 @@ class CategoryPage extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            CategoryListWidget(),
-            CategoryListWidget(),
             CategoryListWidget(),
             CategoryListWidget(),
             CategoryListWidget(),

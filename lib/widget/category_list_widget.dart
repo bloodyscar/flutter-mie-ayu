@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
+import 'package:provider/provider.dart';
 
-class CategoryListWidget extends StatelessWidget {
-  const CategoryListWidget({Key? key}) : super(key: key);
+class CategoryListWidget extends StatefulWidget {
+  CategoryListWidget({Key? key}) : super(key: key);
 
+  @override
+  State<CategoryListWidget> createState() => _CategoryListWidgetState();
+}
+
+class _CategoryListWidgetState extends State<CategoryListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(

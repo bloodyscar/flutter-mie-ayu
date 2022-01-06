@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "516315309080",
-    "project_id": "mie-ayu-app",
-    "storage_bucket": "mie-ayu-app.appspot.com"
+    "project_number": "856291487707",
+    "project_id": "flutter-mie-ayu",
+    "storage_bucket": "flutter-mie-ayu.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:516315309080:android:684b280a77f56e45678f6d",
+        "mobilesdk_app_id": "1:856291487707:android:05c4e9af3b3cbb92b541fe",
         "android_client_info": {
           "package_name": "com.example.mie_ayu_rawalumbu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "516315309080-2edmohr9b3erum2isqqhqh1mb7ukqm14.apps.googleusercontent.com",
+          "client_id": "856291487707-jfse6elaftc7d3l4rnd2iq8t3apa9eim.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.mie_ayu_rawalumbu",
-            "certificate_hash": "19fffa19fac9f2e7e09f5902e9ee7995322619d4"
+            "certificate_hash": "669722dfec87518516537cd47cabcd6f6925471f"
           }
         },
         {
-          "client_id": "516315309080-vv8he9gngcg7g4uehtclt1je38aiq453.apps.googleusercontent.com",
+          "client_id": "856291487707-3vdt1tgk7gflo7gf28nvusiq7omthd4n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB75XdQPCLGoYTrqNSfYRIJXN0OFeAE3c8"
+          "current_key": "AIzaSyCDaWJcs63g7bP4vhFQrCeUuZRaUkBm1SU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "516315309080-vv8he9gngcg7g4uehtclt1je38aiq453.apps.googleusercontent.com",
+              "client_id": "856291487707-3vdt1tgk7gflo7gf28nvusiq7omthd4n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

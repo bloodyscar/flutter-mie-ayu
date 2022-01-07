@@ -42,15 +42,38 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Get.to(() => MapPage());
                   },
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Change Location",
-                        style: secondaryTextStyle,
+                      Row(
+                        children: [
+                          Text(
+                            "Change Location",
+                            style: secondaryTextStyle,
+                          ),
+                          Image.asset(
+                            "assets/pin.png",
+                            width: 24,
+                          ),
+                        ],
                       ),
-                      Image.asset(
-                        "assets/pin.png",
-                        width: 24,
+                      Container(
+                        width: responsive.width * 0.5,
+                        child: (providerGoogle.street == null)
+                            ? Text(
+                                "Jalan Tidak Ditemukan",
+                                style: secondaryTextStyle.copyWith(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 14,
+                                    fontWeight: medium),
+                              )
+                            : Text(
+                                "${providerGoogle.street}",
+                                style: secondaryTextStyle.copyWith(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 12,
+                                    fontWeight: medium),
+                              ),
                       ),
                     ],
                   ),
@@ -60,28 +83,10 @@ class _HomePageState extends State<HomePage> {
                   height: 30,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/cartIcon.png"),
+                          image: AssetImage("assets/cart.png"),
                           fit: BoxFit.cover)),
                 )
               ],
-            ),
-            Container(
-              width: responsive.width * 0.5,
-              child: (providerGoogle.street == null)
-                  ? Text(
-                      "Jalan Tidak Ditemukan",
-                      style: secondaryTextStyle.copyWith(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 16,
-                          fontWeight: medium),
-                    )
-                  : Text(
-                      "${providerGoogle.street}",
-                      style: secondaryTextStyle.copyWith(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 16,
-                          fontWeight: medium),
-                    ),
             ),
             Container()
           ],
@@ -117,7 +122,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -135,26 +140,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CategoryCard(),
-                      CategoryCard(),
-                      CategoryCard(),
-                    ]),
-                SizedBox(
-                  height: 14,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CategoryCard(),
-                    CategoryCard(),
-                    CategoryCard(),
-                  ],
+                Wrap(
+                  children: providerProduct.products.map((category) {
+                    return CategoryCard(
+                      productModel: category,
+                    );
+                  }).toList(),
                 ),
               ],
             ),

@@ -16,6 +16,9 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     getInit();
+    Timer(Duration(seconds: 3), () {
+      Get.to(() => IntroPage());
+    });
     super.initState();
   }
 

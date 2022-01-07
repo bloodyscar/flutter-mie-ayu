@@ -1,18 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
 
-class CategoryListWidget extends StatefulWidget {
-  CategoryListWidget({Key? key}) : super(key: key);
+class CategoryListWidget extends StatelessWidget {
+  ProductModel filterProduct;
+  CategoryListWidget({Key? key, required this.filterProduct}) : super(key: key);
 
-  @override
-  State<CategoryListWidget> createState() => _CategoryListWidgetState();
-}
-
-class _CategoryListWidgetState extends State<CategoryListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,12 +26,12 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Mie Goreng Spesial",
+                  "${filterProduct.name}",
                   style: primartyTextStyle.copyWith(
                       fontSize: 16, fontWeight: medium),
                 ),
                 Text(
-                  "Mie goreng spesial dengan isian sayuran, telur, ayam dan bakso sapi, ditambah dengan telur dadar / ceplok",
+                  "${filterProduct.description}",
                   maxLines: 2,
                   style: thirdTextStyle.copyWith(
                       overflow: TextOverflow.ellipsis, fontSize: 12),
@@ -44,7 +43,9 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Rp 25,000",
+                      NumberFormat.currency(
+                              locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                          .format(filterProduct.price),
                       style: priceTextStyle.copyWith(
                           fontSize: 16, fontWeight: medium),
                     ),
@@ -61,10 +62,30 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
             onTap: () {
               Get.to(() => DetailPage());
             },
-            child: ClipRRect(
-              child: Image.asset(
-                "assets/img-mie.png",
+            child: CachedNetworkImage(
+              imageUrl: "${filterProduct.imageUrl}",
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  child: CircularProgressIndicator(
+                    value: downloadProgress.progress,
+                    strokeWidth: 1,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              imageBuilder: (context, imageProvider) => Container(
                 width: 125,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           )

@@ -1,21 +1,43 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:mie_ayu_rawalumbu/models/product_model.dart';
+import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
+import 'package:provider/provider.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ProductModel productModel = Get.arguments;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
     Widget header() {
       return Stack(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.4,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/img-mie.png"),
-                    fit: BoxFit.cover)),
+          CachedNetworkImage(
+            imageUrl: "${productModel.imageUrl}",
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                Center(
+              child: Container(
+                width: 10,
+                height: 10,
+                child: CircularProgressIndicator(
+                  value: downloadProgress.progress,
+                  strokeWidth: 1,
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            imageBuilder: (context, imageProvider) => Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.4,
+              decoration: BoxDecoration(
+                  image:
+                      DecorationImage(image: imageProvider, fit: BoxFit.cover)),
+            ),
           ),
           SafeArea(
             child: Container(
@@ -31,6 +53,7 @@ class DetailPage extends StatelessWidget {
                     child: Image.asset(
                       "assets/back.png",
                       width: 10,
+                      color: backgroundColor2,
                     ),
                   ),
                   Image.asset(
@@ -67,12 +90,12 @@ class DetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Mie Goreng Spesial",
+                "${productModel.name}",
                 style:
                     primartyTextStyle.copyWith(fontSize: 20, fontWeight: bold),
               ),
               Text(
-                "Mie  •  Gratis Ongkir",
+                "${productModel.category}  •  Gratis Ongkir",
                 style: TextStyle(color: Color(0xffA1A1A1), fontSize: 12),
               ),
               SizedBox(
@@ -88,7 +111,7 @@ class DetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Deskripsi",
+                        "${productModel.name}",
                         style: primartyTextStyle.copyWith(
                             fontSize: 18, fontWeight: semiBold),
                       ),
@@ -96,7 +119,7 @@ class DetailPage extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        "Mie goreng spesial dengan isian sayuran, telur, ayam dan bakso sapi, ditambah dengan telur dadar / ceplok",
+                        "${productModel.description}",
                         style: thirdTextStyle.copyWith(
                           fontSize: 16,
                         ),
@@ -123,7 +146,9 @@ class DetailPage extends StatelessWidget {
                             fontSize: 16, fontWeight: semiBold),
                       ),
                       Text(
-                        "Rp 25,000",
+                        NumberFormat.currency(
+                                locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                            .format(productModel.price),
                         style: priceTextStyle.copyWith(
                             fontSize: 16, fontWeight: semiBold),
                       ),

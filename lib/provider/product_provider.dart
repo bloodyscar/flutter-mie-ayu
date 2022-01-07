@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
@@ -14,12 +12,25 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getProducts() async {
+  Future<List<ProductModel>> getProducts() async {
     try {
       var listProduct = await ProductService().getAllProducts();
       products = listProduct;
+      return products;
     } catch (e) {
-      print(e);
+      throw Exception(e);
+    }
+  }
+
+  Future<List<ProductModel>> filterProducts(String? categoryName) async {
+    try {
+      var listProduct = await ProductService().getAllProducts();
+      var filterCategory = listProduct
+          .where((element) => element.category!.contains(categoryName!))
+          .toList();
+      return filterCategory;
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }

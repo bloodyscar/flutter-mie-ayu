@@ -97,12 +97,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MainPage(),
-                ),
-              );
+              Get.to(() => MainPage());
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(backgroundColor2),

@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/map_page.dart';
+import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/map_screen.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
+import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/service/auth_service.dart';
+import 'package:mie_ayu_rawalumbu/service/product_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/category_card.dart';
 import 'package:mie_ayu_rawalumbu/widget/loading_button.dart';
@@ -19,18 +23,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isLoading = false;
-
-
-
   @override
   Widget build(BuildContext context) {
-    GoogleMapProvider provider = Provider.of<GoogleMapProvider>(context);
+    GoogleMapProvider providerGoogle = Provider.of<GoogleMapProvider>(context);
+    ProductProvider providerProduct = Provider.of<ProductProvider>(context);
     var responsive = MediaQuery.of(context).size;
-
-    // getUserLocation() async {
-    //   await provider.getLocationUser();
-    // }
 
     Widget header() {
       return Container(
@@ -70,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               width: responsive.width * 0.5,
-              child: (provider.street == null)
+              child: (providerGoogle.street == null)
                   ? Text(
                       "Jalan Tidak Ditemukan",
                       style: secondaryTextStyle.copyWith(
@@ -79,14 +76,14 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: medium),
                     )
                   : Text(
-                      "${provider.street}",
+                      "${providerGoogle.street}",
                       style: secondaryTextStyle.copyWith(
                           overflow: TextOverflow.ellipsis,
                           fontSize: 16,
                           fontWeight: medium),
                     ),
             ),
-            isLoading ? LoadingButton() : Container()
+            Container()
           ],
         ),
       );
@@ -142,13 +139,12 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CategoryCard(),
-                    CategoryCard(),
-                    CategoryCard(),
-                  ],
-                ),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CategoryCard(),
+                      CategoryCard(),
+                      CategoryCard(),
+                    ]),
                 SizedBox(
                   height: 14,
                 ),
@@ -206,12 +202,11 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
-                  children: [
-                    PopularCard(),
-                    PopularCard(),
-                    PopularCard(),
-                  ],
-                ),
+                    children: providerProduct.products
+                        .map((product) => PopularCard(
+                              product: product,
+                            ))
+                        .toList()),
               ),
             )
           ],
@@ -220,51 +215,52 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: responsive.height * 0.5,
-          decoration: BoxDecoration(
-            color: backgroundColor1,
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          height: responsive.height * 0.5,
-          decoration: BoxDecoration(
-            color: backgroundColor2,
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(48),
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: responsive.height * 0.5,
+            decoration: BoxDecoration(
+              color: backgroundColor1,
             ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: responsive.height * 0.5),
-          decoration: BoxDecoration(
-            color: backgroundColor2,
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: responsive.height * 0.5),
-          decoration: BoxDecoration(
-            color: backgroundColor1,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(48),
+          Container(
+            width: double.infinity,
+            height: responsive.height * 0.5,
+            decoration: BoxDecoration(
+              color: backgroundColor2,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(48),
+              ),
             ),
           ),
-        ),
-        ListView(
-          children: [
-            header(),
-            searchingBox(),
-            categoriesSection(),
-            contentPopular(),
-          ],
-        )
-      ],
-    ));
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: responsive.height * 0.5),
+            decoration: BoxDecoration(
+              color: backgroundColor2,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: responsive.height * 0.5),
+            decoration: BoxDecoration(
+              color: backgroundColor1,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(48),
+              ),
+            ),
+          ),
+          ListView(
+            children: [
+              header(),
+              searchingBox(),
+              categoriesSection(),
+              contentPopular(),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

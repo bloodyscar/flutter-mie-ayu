@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
 class PopularCard extends StatelessWidget {
-  const PopularCard({Key? key}) : super(key: key);
+  ProductModel product;
+
+  PopularCard({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class PopularCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 image: DecorationImage(
-                  image: AssetImage("assets/img-mie.png"),
+                  image: NetworkImage("${product.imageCategory}"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -34,7 +37,7 @@ class PopularCard extends StatelessWidget {
             height: 8,
           ),
           Text(
-            "Mie Goreng Spesial",
+            "${product.name}",
             style: primartyTextStyle.copyWith(
                 overflow: TextOverflow.ellipsis, fontWeight: semiBold),
           ),
@@ -45,7 +48,7 @@ class PopularCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Rp 22,000",
+                "Rp ${product.price}",
                 style: priceTextStyle.copyWith(fontWeight: medium),
               ),
               Image.asset(

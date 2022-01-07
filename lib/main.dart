@@ -37,13 +37,13 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ChatPage(),
-        // routes: {
-        //   '/': (context) => SplashPage(),
-        //   '/intro-page': (context) => IntroPage(),
-        //   '/login-page': (context) => LoginPage(),
-        //   '/home-page': (context) => HomePage(),
-        // },
+        // home: ChatPage(),
+        routes: {
+          '/': (context) => SplashPage(),
+          '/intro-page': (context) => IntroPage(),
+          '/login-page': (context) => LoginPage(),
+          '/home-page': (context) => HomePage(),
+        },
       ),
     );
   }

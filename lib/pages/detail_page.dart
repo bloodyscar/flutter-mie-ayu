@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
@@ -12,13 +13,26 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductModel productModel = Get.arguments;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
+    addCart() async {
+      await productProvider.addToCart(productProvider.getDetailProduct!);
+      Get.snackbar(
+        "BERHASIL",
+        "Berhasil Menambahkan Produk",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: backgroundColor2,
+        margin:
+            EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
+        duration: Duration(seconds: 1),
+      );
+    }
+
     Widget header() {
       return Stack(
         children: [
           CachedNetworkImage(
-            imageUrl: "${productModel.imageUrl}",
+            imageUrl: "${productProvider.getDetailProduct!.imageUrl}",
             progressIndicatorBuilder: (context, url, downloadProgress) =>
                 Center(
               child: Container(
@@ -33,7 +47,7 @@ class DetailPage extends StatelessWidget {
             errorWidget: (context, url, error) => Icon(Icons.error),
             imageBuilder: (context, imageProvider) => Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
                   image:
                       DecorationImage(image: imageProvider, fit: BoxFit.cover)),
@@ -50,15 +64,48 @@ class DetailPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Image.asset(
-                      "assets/back.png",
-                      width: 10,
-                      color: backgroundColor2,
+                    child: Container(
+                      padding: EdgeInsets.all(6),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Image.asset(
+                        "assets/back.png",
+                        color: backgroundColor1,
+                      ),
                     ),
                   ),
-                  Image.asset(
-                    "assets/shape.png",
-                    width: 20,
+                  Container(
+                    padding: EdgeInsets.all(6),
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Image.asset(
+                      "assets/shape.png",
+                      color: backgroundColor2,
+                    ),
                   ),
                 ],
               ),
@@ -90,12 +137,12 @@ class DetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${productModel.name}",
+                "${productProvider.getDetailProduct!.name}",
                 style:
-                    primartyTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+                    primartyTextStyle.copyWith(fontSize: 18, fontWeight: bold),
               ),
               Text(
-                "${productModel.category}  •  Gratis Ongkir",
+                "${productProvider.getDetailProduct!.category}  •  Gratis Ongkir",
                 style: TextStyle(color: Color(0xffA1A1A1), fontSize: 12),
               ),
               SizedBox(
@@ -111,15 +158,15 @@ class DetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${productModel.name}",
+                        "Keterangan",
                         style: primartyTextStyle.copyWith(
-                            fontSize: 18, fontWeight: semiBold),
+                            fontSize: 16, fontWeight: semiBold),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        "${productModel.description}",
+                        "${productProvider.getDetailProduct!.description}",
                         style: thirdTextStyle.copyWith(
                           fontSize: 16,
                         ),
@@ -129,7 +176,7 @@ class DetailPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -148,7 +195,7 @@ class DetailPage extends StatelessWidget {
                       Text(
                         NumberFormat.currency(
                                 locale: 'id', symbol: 'Rp ', decimalDigits: 0)
-                            .format(productModel.price),
+                            .format(productProvider.getDetailProduct!.price),
                         style: priceTextStyle.copyWith(
                             fontSize: 16, fontWeight: semiBold),
                       ),
@@ -159,17 +206,20 @@ class DetailPage extends StatelessWidget {
               SizedBox(
                 height: defaultMargin,
               ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 14),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: backgroundColor2),
-                child: Center(
-                    child: Text(
-                  "Add to Cart",
-                  style: TextStyle(fontSize: 16, fontWeight: semiBold),
-                )),
+              GestureDetector(
+                onTap: addCart,
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: backgroundColor2),
+                  child: Center(
+                      child: Text(
+                    "Add to Cart",
+                    style: TextStyle(fontSize: 16, fontWeight: semiBold),
+                  )),
+                ),
               ),
             ],
           ),

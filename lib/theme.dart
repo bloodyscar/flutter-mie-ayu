@@ -10,11 +10,19 @@ Color secondaryTextColor = Color(0xff000000); // black grey
 Color boxDescriptionColor = Color(0xff323B48); // box text
 Color thirdTextColor = Color(0xffA1A1A1); // grey text
 
-TextStyle primartyTextStyle = GoogleFonts.poppins(color: primaryTextColor);
-TextStyle secondaryTextStyle = GoogleFonts.poppins(color: secondaryTextColor);
-TextStyle priceTextStyle = GoogleFonts.poppins(color: backgroundColor2);
-TextStyle boxDescriptionStyle = GoogleFonts.poppins(color: boxDescriptionColor);
-TextStyle thirdTextStyle = GoogleFonts.poppins(color: thirdTextColor);
+
+Color darkGreyColor = Color(0xff7C82A1); // dark grey
+
+
+
+TextStyle primartyTextStyle = GoogleFonts.ibmPlexSans(color: primaryTextColor);
+TextStyle secondaryTextStyle =
+    GoogleFonts.ibmPlexSans(color: secondaryTextColor);
+TextStyle priceTextStyle = GoogleFonts.ibmPlexSans(color: backgroundColor2);
+TextStyle boxDescriptionStyle =
+    GoogleFonts.ibmPlexSans(color: boxDescriptionColor);
+TextStyle thirdTextStyle = GoogleFonts.ibmPlexSans(color: thirdTextColor);
+TextStyle darkGreyTextStyle = GoogleFonts.ibmPlexSans(color: darkGreyColor);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;

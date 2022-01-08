@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {},
               child: Text(
                 "Forgot Password?",
-                style: boxDescriptionStyle.copyWith(
+                style: darkGreyTextStyle.copyWith(
                     fontSize: 14,
                     fontWeight: medium,
                     decoration: TextDecoration.underline),
@@ -294,7 +294,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Text(
                 "Don’t have an account?",
-                style: boxDescriptionStyle.copyWith(
+                style: darkGreyTextStyle.copyWith(
                     fontSize: 12, fontWeight: medium),
               ),
               TextButton(

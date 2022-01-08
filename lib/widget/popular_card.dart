@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
+import 'package:provider/provider.dart';
 
 class PopularCard extends StatelessWidget {
   ProductModel product;
@@ -13,6 +15,7 @@ class PopularCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
     return Container(
       width: 140,
       margin: EdgeInsets.only(right: 20),
@@ -21,7 +24,7 @@ class PopularCard extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed("/detail-page", arguments: product);
+              Get.toNamed("/detail-page", arguments: productProvider.getDetailId(product));
             },
             child: CachedNetworkImage(
               imageUrl: "${product.imageUrl}",

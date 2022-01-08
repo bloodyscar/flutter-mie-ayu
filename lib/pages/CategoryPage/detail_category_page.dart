@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
-import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/category_list_widget.dart';
-import 'package:mie_ayu_rawalumbu/widget/popular_card.dart';
-import 'package:provider/provider.dart';
 
 class DetailCategoryPage extends StatelessWidget {
   const DetailCategoryPage({Key? key}) : super(key: key);
@@ -13,19 +11,18 @@ class DetailCategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ProductModel> filterProduct = Get.arguments[0];
-    ProductModel product = Get.arguments[1];
-    print(product);
-
+    CategoryModel category = Get.arguments[1];
     return Scaffold(
       backgroundColor: backgroundColor1,
       appBar: AppBar(
         leading: IconButton(
+          color: Colors.white,
           onPressed: () {
             Get.back();
           },
           icon: Icon(Icons.arrow_back),
         ),
-        title: Text("Category: ${product.category}"),
+        title: Text("Category: ${category.name}"),
         backgroundColor: backgroundColor1,
         elevation: 1,
       ),

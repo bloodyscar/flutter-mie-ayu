@@ -14,55 +14,47 @@ class CategoryListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${filterProduct.name}",
-                  style: primartyTextStyle.copyWith(
-                      fontSize: 16, fontWeight: medium),
-                ),
-                Text(
-                  "${filterProduct.description}",
-                  maxLines: 2,
-                  style: thirdTextStyle.copyWith(
-                      overflow: TextOverflow.ellipsis, fontSize: 12),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      NumberFormat.currency(
-                              locale: 'id', symbol: 'Rp ', decimalDigits: 0)
-                          .format(filterProduct.price),
-                      style: priceTextStyle.copyWith(
-                          fontSize: 16, fontWeight: medium),
-                    ),
-                    Image.asset(
-                      "assets/wishlist.png",
-                      width: 16,
-                    )
-                  ],
-                )
-              ],
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed("/detail-page", arguments: productProvider.getDetailId(filterProduct));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${filterProduct.name}",
+                    style: primartyTextStyle.copyWith(
+                        fontSize: 16, fontWeight: medium),
+                  ),
+                  Text(
+                    "${filterProduct.description}",
+                    maxLines: 2,
+                    style: thirdTextStyle.copyWith(
+                        overflow: TextOverflow.ellipsis, fontSize: 12),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    NumberFormat.currency(
+                            locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                        .format(filterProduct.price),
+                    style: priceTextStyle.copyWith(
+                        fontSize: 16, fontWeight: medium),
+                  ),
+                ],
+              ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Get.to(() => DetailPage());
-            },
-            child: CachedNetworkImage(
+            CachedNetworkImage(
               imageUrl: "${filterProduct.imageUrl}",
               progressIndicatorBuilder: (context, url, downloadProgress) =>
                   Center(
@@ -87,9 +79,9 @@ class CategoryListWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

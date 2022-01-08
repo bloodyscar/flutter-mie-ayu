@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +26,7 @@ class _SplashPageState extends State<SplashPage> {
 
   getInit() async {
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    await Provider.of<CategoryProvider>(context, listen: false).getCategories();
     Timer(Duration(seconds: 3), () {
       Get.to(() => IntroPage());
     });

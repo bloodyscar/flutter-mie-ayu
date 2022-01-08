@@ -35,41 +35,38 @@ class _MainPageState extends State<MainPage> {
           topRight: Radius.circular(12),
         ),
         child: BottomNavigationBar(
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.3),
           onTap: (int currentInd) {
             setState(() {
               currentIndex = currentInd;
             });
           },
           currentIndex: currentIndex,
-          fixedColor: Colors.black,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: backgroundColor2,
+              backgroundColor: backgroundColor1,
               icon: Icon(
                 Icons.home_outlined,
-                color: backgroundColor1,
               ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-                backgroundColor: backgroundColor2,
+                backgroundColor: backgroundColor1,
                 icon: Icon(
                   Icons.chat_outlined,
-                  color: backgroundColor1,
                 ),
                 label: 'Chat'),
             BottomNavigationBarItem(
-                backgroundColor: backgroundColor2,
+                backgroundColor: backgroundColor1,
                 icon: Icon(
                   Icons.shopping_bag_outlined,
-                  color: backgroundColor1,
                 ),
                 label: 'Cart'),
             BottomNavigationBarItem(
-                backgroundColor: backgroundColor2,
+                backgroundColor: backgroundColor1,
                 icon: Icon(
                   Icons.person_outline,
-                  color: backgroundColor1,
                 ),
                 label: 'Profile'),
           ],

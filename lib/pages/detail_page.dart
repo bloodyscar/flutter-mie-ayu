@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:mie_ayu_rawalumbu/models/category_model.dart';
-import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';

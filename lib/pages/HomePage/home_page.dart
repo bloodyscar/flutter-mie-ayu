@@ -1,18 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/map_page.dart';
-import 'package:mie_ayu_rawalumbu/models/product_model.dart';
-import 'package:mie_ayu_rawalumbu/pages/map_screen.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
-import 'package:mie_ayu_rawalumbu/service/auth_service.dart';
-import 'package:mie_ayu_rawalumbu/service/product_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/category_card.dart';
-import 'package:mie_ayu_rawalumbu/widget/loading_button.dart';
 import 'package:mie_ayu_rawalumbu/widget/popular_card.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +25,6 @@ class _HomePageState extends State<HomePage> {
     CategoryProvider categoryProvider = Provider.of<CategoryProvider>(context);
 
     var responsive = MediaQuery.of(context).size;
-    List<ProductModel> listCat = providerProduct.products;
 
     Widget header() {
       return Container(

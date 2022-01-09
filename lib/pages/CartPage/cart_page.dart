@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mie_ayu_rawalumbu/models/cart_model.dart';
-import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
-import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/button.dart';
 import 'package:mie_ayu_rawalumbu/widget/cart_list_widget.dart';
@@ -13,7 +11,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductProvider productProvider = Provider.of<ProductProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     List<CartModel> carts = cartProvider.carts;
     double width = MediaQuery.of(context).size.width;

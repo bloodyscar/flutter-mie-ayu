@@ -7,12 +7,10 @@ class AuthService {
   // registration
   Future<bool> registrasiUser(String emailUser, String passwordUser) async {
     try {
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-              email: emailUser, password: passwordUser);
+      await _auth.createUserWithEmailAndPassword(
+          email: emailUser, password: passwordUser);
       return true;
     } catch (e) {
-      print(e);
       return false;
     }
   }

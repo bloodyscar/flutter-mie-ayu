@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
-import 'package:mie_ayu_rawalumbu/service/category_service.dart';
 import 'package:mie_ayu_rawalumbu/service/product_service.dart';
 
 class ProductProvider with ChangeNotifier {

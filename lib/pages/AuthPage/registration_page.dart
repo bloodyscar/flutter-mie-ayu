@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/service/auth_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
@@ -7,48 +8,58 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController(text: '');
     TextEditingController emailController = TextEditingController(text: '');
     TextEditingController passwordController = TextEditingController(text: '');
 
-    Widget fullNameInput() {
-      return Container(
-        width: double.infinity,
-        height: 56,
-        margin: EdgeInsets.only(top: 40),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: 25,
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.person_outline_rounded,
-                color: boxDescriptionColor,
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration.collapsed(
-                      hintText: "Full Name",
-                      hintStyle: TextStyle(
-                          color: boxDescriptionColor,
-                          fontSize: 16,
-                          fontWeight: medium)),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+    handleRegistrasi() async {
+      try {
+        if (await AuthService()
+            .registrasiUser(emailController.text, passwordController.text)) {
+          Get.snackbar("SUKSES", "REGISTRASI BERHASIL");
+        }
+      } catch (e) {
+        Get.snackbar("GAGAL", e.toString());
+      }
     }
+
+    // Widget fullNameInput() {
+    //   return Container(
+    //     width: double.infinity,
+    //     height: 56,
+    //     margin: EdgeInsets.only(top: 40),
+    //     decoration: BoxDecoration(
+    //       color: Colors.white,
+    //       borderRadius: BorderRadius.circular(12),
+    //     ),
+    //     child: Container(
+    //       margin: EdgeInsets.symmetric(
+    //         horizontal: 25,
+    //       ),
+    //       child: Row(
+    //         children: [
+    //           Icon(
+    //             Icons.person_outline_rounded,
+    //             color: boxDescriptionColor,
+    //           ),
+    //           SizedBox(
+    //             width: 20,
+    //           ),
+    //           Expanded(
+    //             child: TextFormField(
+    //               controller: nameController,
+    //               decoration: InputDecoration.collapsed(
+    //                   hintText: "Full Name",
+    //                   hintStyle: TextStyle(
+    //                       color: boxDescriptionColor,
+    //                       fontSize: 16,
+    //                       fontWeight: medium)),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // }
 
     Widget emailInput() {
       return Container(
@@ -135,11 +146,7 @@ class RegistrationPage extends StatelessWidget {
         height: 56,
         margin: EdgeInsets.only(top: 30),
         child: TextButton(
-          onPressed: () {
-            AuthService()
-                .registrasiUser(emailController.text, passwordController.text);
-            print("Registrasi Berhasil");
-          },
+          onPressed: handleRegistrasi,
           style: TextButton.styleFrom(
             backgroundColor: backgroundColor2,
             shape: RoundedRectangleBorder(

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';

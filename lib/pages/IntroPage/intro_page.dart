@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/pages/AuthPage/registration_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
-import 'package:mie_ayu_rawalumbu/widget/button.dart';
 
 class IntroPage extends StatefulWidget {
   IntroPage({Key? key}) : super(key: key);

@@ -55,27 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
 
-    handleLoginAnon() async {
-      if (await AuthService().loginAnonymous()) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => MainPage(),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.red,
-            content: Text(
-              "GAGAL LOGIN",
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-      }
-    }
-
+    
     Widget header() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -271,17 +251,6 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
             )),
-      );
-    }
-
-    Widget skipLogin() {
-      return TextButton(
-        onPressed: () {
-          handleLoginAnon();
-        },
-        child: Text(
-          "Skip Login",
-        ),
       );
     }
 

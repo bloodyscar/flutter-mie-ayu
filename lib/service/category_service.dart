@@ -9,7 +9,7 @@ class CategoryService {
       return firestore.collection("category").get().then((value) {
         List<CategoryModel> listCategory = [];
         for (var i = 0; i < value.docs.length; i++) {
-          var items = value.docs[i].data() as Map<String, dynamic>;
+          var items = value.docs[i].data();
           listCategory.add(CategoryModel.fromJson(items));
         }
         return listCategory;

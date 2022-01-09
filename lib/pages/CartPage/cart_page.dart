@@ -22,13 +22,17 @@ class CartPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         notchMargin: 5,
-        child: Button(
-            title: "PAY NOW",
-            width: width,
-            height: height * 0.08,
-            bgColor: backgroundColor2,
-            textColor: backgroundColor1,
-            textSize: 16),
+        child: Container(
+          margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height * 0.01),
+          child: Button(
+              title: "Checkout Yuk",
+              width: width,
+              height: height * 0.08,
+              bgColor: backgroundColor2,
+              textColor: backgroundColor1,
+              textSize: 16),
+        ),
         elevation: 1,
       ),
       appBar: AppBar(

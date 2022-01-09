@@ -9,7 +9,7 @@ class ProductService {
       return firestore.collection("products").get().then((value) {
         List<ProductModel> listProducts = [];
         for (var i = 0; i < value.docs.length; i++) {
-          var items = value.docs[i].data() as Map<String, dynamic>;
+          var items = value.docs[i].data();
           listProducts.add(ProductModel.fromJson(items));
         }
         return listProducts;

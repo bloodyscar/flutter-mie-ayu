@@ -28,8 +28,8 @@ class _MainPageState extends State<MainPage> {
       body: screens[currentIndex],
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(12),
-          topRight: Radius.circular(12),
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
         ),
         child: BottomNavigationBar(
           selectedItemColor: Colors.white,
@@ -42,26 +42,26 @@ class _MainPageState extends State<MainPage> {
           currentIndex: currentIndex,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: backgroundColor1,
+              backgroundColor: boxDescriptionColor,
               icon: Icon(
                 Icons.home_outlined,
               ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-                backgroundColor: backgroundColor1,
+                backgroundColor: boxDescriptionColor,
                 icon: Icon(
                   Icons.chat_outlined,
                 ),
                 label: 'Chat'),
             BottomNavigationBarItem(
-                backgroundColor: backgroundColor1,
+                backgroundColor: boxDescriptionColor,
                 icon: Icon(
                   Icons.shopping_bag_outlined,
                 ),
                 label: 'Cart'),
             BottomNavigationBarItem(
-                backgroundColor: backgroundColor1,
+                backgroundColor: boxDescriptionColor,
                 icon: Icon(
                   Icons.person_outline,
                 ),

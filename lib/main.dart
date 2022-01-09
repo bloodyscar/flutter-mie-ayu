@@ -7,6 +7,7 @@ import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 
 import 'package:mie_ayu_rawalumbu/pages/splash_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
@@ -30,7 +31,11 @@ class MyApp extends StatelessWidget {
         ListenableProvider<ProductProvider>(
             create: (context) => ProductProvider()),
         ListenableProvider<CategoryProvider>(
-            create: (context) => CategoryProvider()),
+          create: (context) => CategoryProvider(),
+        ),
+        ListenableProvider<CartProvider>(
+          create: (context) => CartProvider(),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

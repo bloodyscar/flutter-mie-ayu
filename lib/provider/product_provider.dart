@@ -8,7 +8,6 @@ import 'package:mie_ayu_rawalumbu/service/product_service.dart';
 class ProductProvider with ChangeNotifier {
   List<ProductModel> _products = [];
   ProductModel? _getDetailProduct;
-  List<ProductModel> _cart = [];
 
   // PRODUCT
   List<ProductModel> get products => _products;
@@ -24,23 +23,7 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // CART
-  List<ProductModel> get carts => _cart;
-  set carts(List<ProductModel> carts) {
-    _cart = carts;
-    notifyListeners();
-  }
 
-  Future<List<ProductModel>> addToCart(ProductModel newListCart) async {
-    try {
-      _cart.add(newListCart);
-      print(_cart.length);
-
-      return _cart;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
 
   Future<ProductModel> getDetailId(ProductModel idProduct) async {
     return getDetailProduct = idProduct;

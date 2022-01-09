@@ -2,28 +2,41 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mie_ayu_rawalumbu/models/cart_model.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
 
 class CartListWidget extends StatelessWidget {
   ProductModel product;
-  CartListWidget({Key? key, required this.product}) : super(key: key);
+  CartModel cart;
+  CartListWidget({Key? key, required this.product, required this.cart})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    // deleteFunction() async {
+    //   if (await cartProvider.deleteCartByProduct(product)) {
+    //     Get.snackbar(
+    //       "HAPUS BERHASIL",
+    //       "",
+    //       duration: Duration(milliseconds: 1500),
+    //       backgroundColor: Colors.red,
+    //     );
+    //   }
+    // }
+
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CachedNetworkImage(
-            imageUrl:
-                "https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png",
+            imageUrl: "${product.imageUrl}",
             progressIndicatorBuilder: (context, url, downloadProgress) =>
                 Center(
               child: Container(
@@ -54,7 +67,7 @@ class CartListWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Mie Ayam Goreng Spesial Mie Ayam Goreng Spesial",
+                  "${product.name}",
                   style: primartyTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
@@ -64,14 +77,16 @@ class CartListWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "Rp 25,000",
+                  NumberFormat.currency(
+                          locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                      .format(product.price),
                   style: priceTextStyle.copyWith(fontWeight: medium),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Jumlah : 5",
+                      "Jumlah : ${cart.qty}",
                       style: primartyTextStyle.copyWith(fontWeight: medium),
                     ),
                     IconButton(

@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
-import 'package:mie_ayu_rawalumbu/pages/CategoryPage/detail_category_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+// ignore: must_be_immutable
 class CategoryCard extends StatelessWidget {
   CategoryModel categoryModel;
   ProductModel productModel;

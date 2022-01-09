@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
-import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class CategoryListWidget extends StatelessWidget {
   ProductModel filterProduct;
   CategoryListWidget({Key? key, required this.filterProduct}) : super(key: key);

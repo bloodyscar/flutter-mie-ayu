@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mie_ayu_rawalumbu/models/category_model.dart';
 import 'package:mie_ayu_rawalumbu/models/product_model.dart';
+import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
@@ -14,19 +15,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-
-    addCart() async {
-      await productProvider.addToCart(productProvider.getDetailProduct!);
-      Get.snackbar(
-        "BERHASIL",
-        "Berhasil Menambahkan Produk",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: backgroundColor2,
-        margin:
-            EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
-        duration: Duration(seconds: 1),
-      );
-    }
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     Widget header() {
       return Stack(
@@ -207,7 +196,9 @@ class DetailPage extends StatelessWidget {
                 height: defaultMargin,
               ),
               GestureDetector(
-                onTap: addCart,
+                onTap: (){
+                  cartProvider.addCart(productProvider.getDetailProduct!);
+                },
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(vertical: 14),

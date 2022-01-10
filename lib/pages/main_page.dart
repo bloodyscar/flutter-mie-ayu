@@ -3,6 +3,7 @@ import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/ChatPage/chat_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/ProfilePage/profile_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/WishlistPage/wishlist_page.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MainPageState extends State<MainPage> {
   final screens = [
     const HomePage(),
     const ChatPage(),
-    const CartPage(),
+    const WishListPage(),
     const ProfilePage(),
   ];
 
@@ -56,10 +57,8 @@ class _MainPageState extends State<MainPage> {
                 label: 'Chat'),
             BottomNavigationBarItem(
                 backgroundColor: boxDescriptionColor,
-                icon: Icon(
-                  Icons.shopping_bag_outlined,
-                ),
-                label: 'Cart'),
+                icon: Icon(Icons.favorite_border),
+                label: 'Wishlist'),
             BottomNavigationBarItem(
                 backgroundColor: boxDescriptionColor,
                 icon: Icon(

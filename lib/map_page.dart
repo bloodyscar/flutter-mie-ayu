@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
+import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
 
 class MapPage extends StatefulWidget {
@@ -23,6 +25,8 @@ class MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     GoogleMapProvider googleProvider = Provider.of<GoogleMapProvider>(context);
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     Future<void> _goToTheLake() async {
       final GoogleMapController controller = await _controller.future;
@@ -50,15 +54,53 @@ class MapPageState extends State<MapPage> {
     }
 
     return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: initCamera,
-        markers: Set.from(myMarkers),
-        zoomGesturesEnabled: true,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-          googleProvider.getPosition();
-        },
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: initCamera,
+            markers: Set.from(myMarkers),
+            zoomGesturesEnabled: true,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+              googleProvider.getPosition();
+            },
+          ),
+          googleProvider.street != null
+              ? SafeArea(
+                  child: Container(
+                    width: width * 0.9,
+                    height: height * 0.08,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    decoration: BoxDecoration(
+                      color: boxDescriptionColor,
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "${googleProvider.street}",
+                              style: primartyTextStyle,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Text(
+                                "OK",
+                                style: primartyTextStyle,
+                              ),
+                            )
+                          ],
+                        )),
+                  ),
+                )
+              : Container(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _goToTheLake,

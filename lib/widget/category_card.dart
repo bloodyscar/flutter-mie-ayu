@@ -43,7 +43,7 @@ class CategoryCard extends StatelessWidget {
               placeholder: (context, string) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey,
-                  highlightColor: Colors.grey.shade100,
+                  highlightColor: Colors.grey.shade400,
                   child: Container(
                     width: double.infinity,
                     height: 80,

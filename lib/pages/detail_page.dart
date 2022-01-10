@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
@@ -13,6 +14,17 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+
+    handleAddCart() async {
+      await cartProvider.addCart(productProvider.getDetailProduct!);
+      Get.snackbar(
+        "Berhasil",
+        "Berhasil Menambahkan Produk",
+        backgroundColor: backgroundColor2,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: Duration(milliseconds: 1500),
+      );
+    }
 
     Widget header() {
       return Stack(
@@ -193,9 +205,7 @@ class DetailPage extends StatelessWidget {
                 height: defaultMargin,
               ),
               GestureDetector(
-                onTap: (){
-                  cartProvider.addCart(productProvider.getDetailProduct!);
-                },
+                onTap: handleAddCart,
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(vertical: 14),

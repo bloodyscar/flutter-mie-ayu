@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/map_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
@@ -75,13 +75,18 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/cart.png"),
-                          fit: BoxFit.cover)),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CartPage());
+                  },
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/cart.png"),
+                            fit: BoxFit.cover)),
+                  ),
                 )
               ],
             ),

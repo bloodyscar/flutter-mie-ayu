@@ -12,6 +12,14 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  getTotalQty() {
+    var totalQty = 0;
+    for (var item in _carts) {
+      totalQty += item.qty;
+    }
+    return totalQty;
+  }
+
   totalPrice() {
     var total = 0;
     for (var item in _carts) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/map_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     GoogleMapProvider providerGoogle = Provider.of<GoogleMapProvider>(context);
     ProductProvider providerProduct = Provider.of<ProductProvider>(context);
     CategoryProvider categoryProvider = Provider.of<CategoryProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     var responsive = MediaQuery.of(context).size;
 
@@ -79,15 +81,37 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Get.to(() => CartPage());
                   },
-                  child: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("assets/cart.png"),
-                            fit: BoxFit.cover)),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${cartProvider.getTotalQty()}",
+                            style: secondaryTextStyle.copyWith(fontSize: 10),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/cart.png"),
+                                fit: BoxFit.cover)),
+                      ),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
             Container()
@@ -120,44 +144,6 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    // Widget categoriesSection() {
-    //   return Column(
-    //     children: [
-    //       Container(
-    //         margin: EdgeInsets.symmetric(horizontal: 20),
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //           children: [
-    //             Text(
-    //               "Category",
-    //               style: secondaryTextStyle.copyWith(
-    //                   fontSize: 20, fontWeight: medium),
-    //             ),
-    //             Text(
-    //               "See All",
-    //               style: secondaryTextStyle.copyWith(
-    //                   fontSize: 14, fontWeight: medium),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    // Container(
-    //   child: Column(
-    //     children: [
-    //       Wrap(
-    //         children: providerProduct.products.map((category) {
-    //           return CategoryCard(
-    //             productModel: category,
-    //           );
-    //         }).toList(),
-    //       ),
-    //     ],
-    //   ),
-    // ),
-    //     ],
-    //   );
-    // }
-
     Widget categoriesSection() {
       return Column(
         children: [
@@ -169,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "Category",
                   style: secondaryTextStyle.copyWith(
-                      fontSize: 20, fontWeight: medium),
+                      fontSize: 18, fontWeight: medium),
                 ),
                 Text(
                   "See All",
@@ -214,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     "Popular Food",
                     style: priceTextStyle.copyWith(
-                        fontSize: 20, fontWeight: medium),
+                        fontSize: 18, fontWeight: medium),
                   ),
                   Text(
                     "See All",

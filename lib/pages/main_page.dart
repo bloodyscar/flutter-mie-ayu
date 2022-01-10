@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/ChatPage/chat_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/ProfilePage/profile_page.dart';

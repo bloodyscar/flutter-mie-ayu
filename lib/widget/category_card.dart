@@ -51,17 +51,6 @@ class CategoryCard extends StatelessWidget {
                   ),
                 );
               },
-              // progressIndicatorBuilder: (context, url, downloadProgress) =>
-              //     Center(
-              //   child: Container(
-              //     width: 10,
-              //     height: 10,
-              //     child: CircularProgressIndicator(
-              //       value: downloadProgress.progress,
-              //       strokeWidth: 1,
-              //     ),
-              //   ),
-              // ),
               errorWidget: (context, url, error) => Icon(Icons.error),
               imageBuilder: (context, imageProvider) => Container(
                 height: 90,
@@ -79,7 +68,7 @@ class CategoryCard extends StatelessWidget {
               "${categoryModel.name}",
               style: secondaryTextStyle.copyWith(
                   overflow: TextOverflow.ellipsis,
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: medium),
             ),
           ],

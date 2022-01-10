@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -10,9 +12,10 @@ import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/button.dart';
 import 'package:mie_ayu_rawalumbu/widget/cart_list_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+class TransactionPage extends StatelessWidget {
+  const TransactionPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +85,7 @@ class CartPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: backgroundColor2,
         title: Text(
-          "Keranjang",
+          "Pembayaran",
           textAlign: TextAlign.center,
           style: secondaryTextStyle.copyWith(fontSize: 16),
         ),
@@ -91,51 +94,6 @@ class CartPage extends StatelessWidget {
           ? ListView(
               scrollDirection: Axis.vertical,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.to(() => MapPage());
-                  },
-                  child: Container(
-                    width: width * 0.5,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: boxDescriptionColor,
-                    ),
-                    child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: (providerGoogle.street == null)
-                            ? Row(
-                                children: [
-                                  Icon(
-                                    Icons.place,
-                                    color: Colors.red,
-                                  ),
-                                  Text(
-                                    "JALAN 404 NOT FOUND",
-                                    style: primartyTextStyle.copyWith(
-                                        overflow: TextOverflow.ellipsis,
-                                        fontSize: 14,
-                                        fontWeight: medium),
-                                  )
-                                ],
-                              )
-                            : Row(
-                                children: [
-                                  Icon(
-                                    Icons.place,
-                                    color: Colors.red,
-                                  ),
-                                  Text(
-                                    "${providerGoogle.street}",
-                                    style: primartyTextStyle.copyWith(
-                                        overflow: TextOverflow.ellipsis,
-                                        fontWeight: medium),
-                                  ),
-                                ],
-                              )),
-                  ),
-                ),
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
                   child: Column(
@@ -147,6 +105,130 @@ class CartPage extends StatelessWidget {
                         .toList(),
                   ),
                 ),
+
+                // START  Timeline
+                Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: SizedBox(
+                    height: 50,
+                    child: TimelineTile(
+                      indicatorStyle: IndicatorStyle(
+                        color: Colors.red,
+                        width: 35,
+                        iconStyle: IconStyle(
+                          iconData: Icons.place,
+                          color: Colors.white,
+                        ),
+                      ),
+                      isFirst: true,
+                      alignment: TimelineAlign.manual,
+                      lineXY: 0.2,
+                      startChild: Wrap(
+                        direction: Axis.vertical,
+                        children: [
+                          Text("4 Jan",
+                              style: primartyTextStyle.copyWith(fontSize: 12)),
+                          Text("23:49",
+                              style: primartyTextStyle.copyWith(fontSize: 12))
+                        ],
+                      ),
+                      endChild: GestureDetector(
+                        onTap: () {
+                          Get.to(() => MapPage());
+                        },
+                        child: (providerGoogle.street == null)
+                            ? Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "JALAN 404 NOT FOUND",
+                                    style: primartyTextStyle.copyWith(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: medium),
+                                  )
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "${providerGoogle.street}",
+                                    style: primartyTextStyle.copyWith(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: medium),
+                                  ),
+                                ],
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: SizedBox(
+                    height: 150,
+                    child: TimelineTile(
+                      alignment: TimelineAlign.manual,
+                      lineXY: 0.2,
+                      startChild: Wrap(
+                        direction: Axis.vertical,
+                        children: [
+                          Text("7 Jan",
+                              style: primartyTextStyle.copyWith(fontSize: 12)),
+                          Text("10:22",
+                              style: primartyTextStyle.copyWith(fontSize: 12))
+                        ],
+                      ),
+                      indicatorStyle: IndicatorStyle(
+                        color: Colors.green,
+                        width: 35,
+                        iconStyle: IconStyle(
+                          iconData: Icons.flag,
+                          color: Colors.white,
+                        ),
+                      ),
+                      isLast: true,
+                      endChild: GestureDetector(
+                        onTap: () {
+                          Get.to(() => MapPage());
+                        },
+                        child: (providerGoogle.street == null)
+                            ? Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "Jalan Pariwisata Raya No 1",
+                                    style: primartyTextStyle.copyWith(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: medium),
+                                  )
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "Jalan Pariwisata Raya No 1",
+                                    style: primartyTextStyle.copyWith(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: medium),
+                                  ),
+                                ],
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+                // END START TIMELINE
               ],
             )
           : Center(

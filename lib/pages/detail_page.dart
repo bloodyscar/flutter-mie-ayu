@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
@@ -14,17 +15,6 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
-
-    handleAddCart() async {
-      await cartProvider.addCart(productProvider.getDetailProduct!);
-      Get.snackbar(
-        "Berhasil",
-        "Berhasil Menambahkan Produk",
-        backgroundColor: backgroundColor2,
-        snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(milliseconds: 1500),
-      );
-    }
 
     Widget header() {
       return Stack(
@@ -205,7 +195,73 @@ class DetailPage extends StatelessWidget {
                 height: defaultMargin,
               ),
               GestureDetector(
-                onTap: handleAddCart,
+                onTap: () async {
+                  await cartProvider.addCart(productProvider.getDetailProduct!);
+                  showModalBottomSheet(
+                    backgroundColor: backgroundColor1,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                    ),
+                    context: context,
+                    builder: (context) => Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      width: double.infinity,
+                      height: 150,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Spacer(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Berhasil Menambahkan Produk",
+                                style: primartyTextStyle,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                width: 130,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: backgroundColor2,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.offAndToNamed("/cart-page");
+                                  },
+                                  child: Center(
+                                    child: Text(
+                                      "Lihat Keranjang",
+                                      style: secondaryTextStyle.copyWith(
+                                          fontSize: 12, fontWeight: semiBold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                        ],
+                      ),
+                    ),
+                  );
+                },
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(vertical: 14),

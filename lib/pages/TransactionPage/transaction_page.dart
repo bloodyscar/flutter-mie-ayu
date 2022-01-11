@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mie_ayu_rawalumbu/map_page.dart';
 import 'package:mie_ayu_rawalumbu/models/cart_model.dart';
+import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/TransactionPage/checkout_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/TransactionPage/transaction_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
@@ -54,9 +56,7 @@ class TransactionPage extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(
-                              () => TransactionPage(),
-                            );
+                            Get.offAll(CheckoutPage());
                           },
                           child: Container(
                             width: width * 0.2,
@@ -67,7 +67,7 @@ class TransactionPage extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                "Beli",
+                                "Bayar",
                                 style:
                                     secondaryTextStyle.copyWith(fontSize: 16),
                               ),
@@ -104,6 +104,57 @@ class TransactionPage extends StatelessWidget {
                             ))
                         .toList(),
                   ),
+                ),
+                Container(
+                  width: width,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  color: boxDescriptionColor,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Metode Pembayaran",
+                            style: primartyTextStyle.copyWith(fontSize: 16),
+                          ),
+                          Text(
+                            "See All",
+                            style: primartyTextStyle.copyWith(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white,
+                              image: DecorationImage(
+                                image: AssetImage("assets/bca.png"),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            "Bank Central Asiappp",
+                            style: primartyTextStyle.copyWith(
+                                fontSize: 16, fontWeight: bold),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
                 ),
 
                 // START  Timeline
@@ -178,9 +229,9 @@ class TransactionPage extends StatelessWidget {
                       startChild: Wrap(
                         direction: Axis.vertical,
                         children: [
-                          Text("7 Jan",
+                          Text("4 Jan",
                               style: primartyTextStyle.copyWith(fontSize: 12)),
-                          Text("10:22",
+                          Text("00:10",
                               style: primartyTextStyle.copyWith(fontSize: 12))
                         ],
                       ),
@@ -204,7 +255,7 @@ class TransactionPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Text(
-                                    "Jalan Pariwisata Raya No 1",
+                                    "Mie Ayu Rawalumbu",
                                     style: primartyTextStyle.copyWith(
                                         overflow: TextOverflow.ellipsis,
                                         fontWeight: medium),
@@ -217,7 +268,7 @@ class TransactionPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Text(
-                                    "Jalan Pariwisata Raya No 1",
+                                    "Mie Ayu Rawalumbu",
                                     style: primartyTextStyle.copyWith(
                                         overflow: TextOverflow.ellipsis,
                                         fontWeight: medium),

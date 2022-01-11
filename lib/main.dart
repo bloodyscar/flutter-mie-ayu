@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/CategoryPage/detail_category_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/TransactionPage/checkout_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 
@@ -49,6 +51,8 @@ class MyApp extends StatelessWidget {
           '/login-page': (context) => LoginPage(),
           '/home-page': (context) => HomePage(),
           '/detail-page': (context) => DetailPage(),
+          '/cart-page': (context) => CartPage(),
+          '/checkout-page': (context) => CheckoutPage(),
           '/detail-category-page': (context) => DetailCategoryPage(),
         },
       ),

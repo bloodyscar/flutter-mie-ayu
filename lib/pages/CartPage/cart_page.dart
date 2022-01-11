@@ -24,7 +24,8 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor1,
-      bottomNavigationBar: cartProvider.carts.length > 0
+      bottomNavigationBar: (cartProvider.carts.length > 0 &&
+              providerGoogle.street != null)
           ? BottomAppBar(
               clipBehavior: Clip.none,
               color: Colors.transparent,
@@ -64,9 +65,9 @@ class CartPage extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                "Beli",
+                                "Belanja",
                                 style:
-                                    secondaryTextStyle.copyWith(fontSize: 16),
+                                    secondaryTextStyle.copyWith(fontSize: 14),
                               ),
                             ),
                           ),
@@ -112,7 +113,7 @@ class CartPage extends StatelessWidget {
                                     color: Colors.red,
                                   ),
                                   Text(
-                                    "JALAN 404 NOT FOUND",
+                                    "Pilih alamat dulu dong, Klik disini",
                                     style: primartyTextStyle.copyWith(
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 14,

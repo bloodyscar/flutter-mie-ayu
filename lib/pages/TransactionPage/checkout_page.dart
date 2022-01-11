@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -43,7 +44,11 @@ class CheckoutPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   color: backgroundColor2,
                 ),
-                child: Center(child: Text("DONE")),
+                child: GestureDetector(
+                    onTap: () {
+                      Get.offAllNamed("/home-page");
+                    },
+                    child: Center(child: Text("DONE"))),
               )
             ],
           ),

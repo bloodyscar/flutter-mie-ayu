@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/map_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/CartPage/cart_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/CategoryPage/detail_category_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
@@ -9,6 +10,7 @@ import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 
 import 'package:mie_ayu_rawalumbu/pages/splash_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/auth_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
@@ -38,6 +40,9 @@ class MyApp extends StatelessWidget {
         ListenableProvider<CartProvider>(
           create: (context) => CartProvider(),
         ),
+        ListenableProvider<AuthProvider>(
+          create: (context) => AuthProvider(),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -54,6 +59,7 @@ class MyApp extends StatelessWidget {
           '/cart-page': (context) => CartPage(),
           '/checkout-page': (context) => CheckoutPage(),
           '/detail-category-page': (context) => DetailCategoryPage(),
+          '/map-page': (context) => MapPage(),
         },
       ),
     );

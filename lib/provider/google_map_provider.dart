@@ -8,6 +8,7 @@ class GoogleMapProvider extends ChangeNotifier {
   String? street;
   double? currentLatitude;
   double? currentLongitude;
+  
 
   myHome() {
     return CameraPosition(

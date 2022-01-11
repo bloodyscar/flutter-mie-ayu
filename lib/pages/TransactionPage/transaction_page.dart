@@ -8,6 +8,7 @@ import 'package:mie_ayu_rawalumbu/models/cart_model.dart';
 import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/TransactionPage/checkout_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/TransactionPage/transaction_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/auth_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
@@ -26,6 +27,48 @@ class TransactionPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     GoogleMapProvider providerGoogle = Provider.of<GoogleMapProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    String getCurrentDate() {
+      var date = DateTime.now().toString();
+
+      var dateParse = DateTime.parse(date);
+
+      var formattedDate = "${dateParse.month}-${dateParse.day}";
+
+      return formattedDate.toString();
+    }
+
+    String getCurrentTime() {
+      var date = DateTime.now().toString();
+
+      var dateParse = DateTime.parse(date);
+      int time = dateParse.minute;
+
+      var formattedTime = "${dateParse.hour}:${dateParse.minute}";
+
+      return formattedTime.toString();
+    }
+
+    String getFutureTime() {
+      var date = DateTime.now().toString();
+      var timeZero = DateTime.now().add(
+        Duration(minutes: 40),
+      );
+
+      var parseString = timeZero.toString();
+
+      var dateParse = DateTime.parse(date);
+      var parse = DateTime.parse(parseString);
+
+      int time = dateParse.minute + 20;
+      if (dateParse.minute + 20 >= 60) {
+        String resetTime = time.toString() + 0.toString().padLeft(2, "0");
+      }
+
+      var formattedTime = "${dateParse.hour}:${parse.minute}";
+
+      return formattedTime.toString();
+    }
 
     return Scaffold(
       backgroundColor: backgroundColor1,
@@ -115,6 +158,89 @@ class TransactionPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
+                            "Pilih Jasa Pengiriman",
+                            style: primartyTextStyle.copyWith(fontSize: 16),
+                          ),
+                          Text(
+                            "See All",
+                            style: primartyTextStyle.copyWith(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.white,
+                              image: DecorationImage(
+                                image: AssetImage("assets/cour.jpg"),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Dianter sama Ibnu",
+                                style: primartyTextStyle.copyWith(
+                                    fontSize: 16, fontWeight: bold),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Rp 10.000",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      decoration: TextDecoration.lineThrough,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                  Text(
+                                    "FREE ONGKIR!!!",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: bold,
+                                      color: Colors.red,
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: width,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  color: boxDescriptionColor,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
                             "Metode Pembayaran",
                             style: primartyTextStyle.copyWith(fontSize: 16),
                           ),
@@ -177,9 +303,9 @@ class TransactionPage extends StatelessWidget {
                       startChild: Wrap(
                         direction: Axis.vertical,
                         children: [
-                          Text("4 Jan",
+                          Text("${getCurrentDate()}",
                               style: primartyTextStyle.copyWith(fontSize: 12)),
-                          Text("23:49",
+                          Text("${getCurrentTime()}",
                               style: primartyTextStyle.copyWith(fontSize: 12))
                         ],
                       ),
@@ -229,9 +355,9 @@ class TransactionPage extends StatelessWidget {
                       startChild: Wrap(
                         direction: Axis.vertical,
                         children: [
-                          Text("4 Jan",
+                          Text("${getCurrentDate()}",
                               style: primartyTextStyle.copyWith(fontSize: 12)),
-                          Text("00:10",
+                          Text("${getFutureTime()}",
                               style: primartyTextStyle.copyWith(fontSize: 12))
                         ],
                       ),

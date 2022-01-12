@@ -24,8 +24,12 @@ class CheckoutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "Your Order is Confirmed!",
-                style: primartyTextStyle.copyWith(fontSize: 16),
+                "Please Transfer to",
+                style: primartyTextStyle.copyWith(fontSize: 14),
+              ),
+              Text(
+                "Virtual Account Number 26184706832",
+                style: primartyTextStyle.copyWith(fontSize: 14),
               ),
               SizedBox(
                 height: 10,

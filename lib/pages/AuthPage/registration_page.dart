@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ayu_rawalumbu/pages/main_page.dart';
 import 'package:mie_ayu_rawalumbu/service/auth_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
@@ -15,51 +18,19 @@ class RegistrationPage extends StatelessWidget {
       try {
         if (await AuthService()
             .registrasiUser(emailController.text, passwordController.text)) {
-          Get.snackbar("SUKSES", "REGISTRASI BERHASIL");
+          Get.offAll(MainPage());
+
+          Get.snackbar(
+            "SUKSES",
+            "REGISTRASI BERHASIL",
+            backgroundColor: Colors.white,
+            snackPosition: SnackPosition.BOTTOM,
+          );
         }
-      } catch (e) {
-        Get.snackbar("GAGAL", e.toString());
+      } on Exception catch (e) {
+        Get.snackbar("GAGAL", e.toString(), backgroundColor: Colors.red);
       }
     }
-
-    // Widget fullNameInput() {
-    //   return Container(
-    //     width: double.infinity,
-    //     height: 56,
-    //     margin: EdgeInsets.only(top: 40),
-    //     decoration: BoxDecoration(
-    //       color: Colors.white,
-    //       borderRadius: BorderRadius.circular(12),
-    //     ),
-    //     child: Container(
-    //       margin: EdgeInsets.symmetric(
-    //         horizontal: 25,
-    //       ),
-    //       child: Row(
-    //         children: [
-    //           Icon(
-    //             Icons.person_outline_rounded,
-    //             color: boxDescriptionColor,
-    //           ),
-    //           SizedBox(
-    //             width: 20,
-    //           ),
-    //           Expanded(
-    //             child: TextFormField(
-    //               controller: nameController,
-    //               decoration: InputDecoration.collapsed(
-    //                   hintText: "Full Name",
-    //                   hintStyle: TextStyle(
-    //                       color: boxDescriptionColor,
-    //                       fontSize: 16,
-    //                       fontWeight: medium)),
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   );
-    // }
 
     Widget emailInput() {
       return Container(

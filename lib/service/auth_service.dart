@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/main_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
+  bool? status;
 
   // registration
   Future<bool> registrasiUser(String emailUser, String passwordUser) async {
@@ -10,8 +15,8 @@ class AuthService {
       await _auth.createUserWithEmailAndPassword(
           email: emailUser, password: passwordUser);
       return true;
-    } catch (e) {
-      return false;
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
     }
   }
 
@@ -23,15 +28,15 @@ class AuthService {
         email: email,
         password: password,
       );
-      print(userCredential.user!.email);
+
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        print('No user found for that email dude');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        print('Wrong password dude');
       }
-      return false;
+      throw Exception(e.code);
     }
   }
 
@@ -75,6 +80,7 @@ class AuthService {
   // signout
   static Future<void> signOut() async {
     FirebaseAuth.instance.signOut();
+    
     print("Logout Berhasil");
   }
 }

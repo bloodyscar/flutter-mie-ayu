@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/pages/AuthPage/registration_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/main_page.dart';
+import 'package:mie_ayu_rawalumbu/provider/auth_provider.dart';
 import 'package:mie_ayu_rawalumbu/service/auth_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:mie_ayu_rawalumbu/widget/loading_button.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -15,17 +17,29 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
+  bool isLoadingSign = false;
 
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController(text: '');
     TextEditingController passwordController = TextEditingController(text: '');
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleSignInEmailPassword() async {
-      if (await AuthService()
-          .signInEmailPassword(emailController.text, passwordController.text)) {
-        Get.to(MainPage());
+      setState(() {
+        isLoadingSign = true;
+      });
+      try {
+        if (await authProvider.loginUser(
+            emailController.text, passwordController.text)) {
+          Get.offAllNamed("/main-page");
+        }
+      } on Exception catch (e) {
+        Get.snackbar("GAGAL", e.toString(), backgroundColor: Colors.red);
       }
+      setState(() {
+        isLoadingSign = false;
+      });
     }
 
     handleSignInGoogle() async {
@@ -33,12 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         isLoading = true;
       });
       if (await AuthService.signInWithGoogle()) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => MainPage(),
-          ),
-        );
+        Get.offAllNamed("/main-page");
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -55,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
 
-    
     Widget header() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(
                 child: TextFormField(
+                  focusNode: FocusNode(),
                   controller: emailController,
                   decoration: InputDecoration.collapsed(
                       hintText: "Email Address",
@@ -197,20 +206,30 @@ class _LoginPageState extends State<LoginPage> {
         height: 56,
         margin: EdgeInsets.only(top: 15),
         child: TextButton(
-          onPressed: handleSignInEmailPassword,
-          style: TextButton.styleFrom(
-            backgroundColor: backgroundColor2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+            onPressed: handleSignInEmailPassword,
+            style: TextButton.styleFrom(
+              backgroundColor: backgroundColor2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
-          ),
-          child: Text(
-            "Sign In",
-            style: secondaryTextStyle.copyWith(
-              fontSize: 16,
-            ),
-          ),
-        ),
+            child: !isLoadingSign
+                ? Text(
+                    "Sign In",
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  )
+                : Center(
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )),
       );
     }
 

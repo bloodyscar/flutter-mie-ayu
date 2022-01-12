@@ -48,25 +48,32 @@ class MyApp extends StatelessWidget {
         ListenableProvider<TransactionProvider>(
           create: (context) => TransactionProvider(),
         ),
-      ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: "IBM Plex Sans",
+        ListenableProvider<AuthProvider>(
+          create: (context) => AuthProvider(),
         ),
-        // home: HomeScreen(),
-        routes: {
-          '/': (context) => SplashPage(),
-          '/intro-page': (context) => IntroPage(),
-          '/login-page': (context) => LoginPage(),
-          '/main-page': (context) => MainPage(),
-          '/home-page': (context) => HomePage(),
-          '/detail-page': (context) => DetailPage(),
-          '/cart-page': (context) => CartPage(),
-          '/checkout-page': (context) => CheckoutPage(),
-          '/detail-category-page': (context) => DetailCategoryPage(),
-          '/map-page': (context) => MapPage(),
-        },
+      ],
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: 'splash-page',
+          theme: ThemeData(
+            fontFamily: "IBM Plex Sans",
+          ),
+          // home: HomeScreen(),
+          routes: {
+            'splash-page': (context) => SplashPage(),
+            'intro-page': (context) => IntroPage(),
+            '/login-page': (context) => LoginPage(),
+            '/main-page': (context) => MainPage(),
+            '/home-page': (context) => HomePage(),
+            '/detail-page': (context) => DetailPage(),
+            '/cart-page': (context) => CartPage(),
+            '/checkout-page': (context) => CheckoutPage(),
+            '/detail-category-page': (context) => DetailCategoryPage(),
+            '/map-page': (context) => MapPage(),
+          },
+        ),
       ),
     );
   }

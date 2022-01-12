@@ -46,7 +46,7 @@ class CheckoutPage extends StatelessWidget {
                 ),
                 child: GestureDetector(
                     onTap: () {
-                      Get.offAllNamed("/home-page");
+                      Get.offAllNamed("/main-page");
                     },
                     child: Center(child: Text("DONE"))),
               )

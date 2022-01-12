@@ -67,7 +67,8 @@ class MapPageState extends State<MapPage> {
             },
           ),
           googleProvider.street != null
-              ? SafeArea(
+              ? Positioned(
+                  bottom: height * 0.08,
                   child: Container(
                     width: width * 0.9,
                     height: height * 0.08,
@@ -83,16 +84,27 @@ class MapPageState extends State<MapPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "${googleProvider.street}",
-                              style: primartyTextStyle,
+                              "Alamat: ${googleProvider.street}",
+                              style: primartyTextStyle.copyWith(fontSize: 12),
                             ),
                             GestureDetector(
                               onTap: () {
                                 Get.back();
                               },
-                              child: Text(
-                                "OK",
-                                style: primartyTextStyle,
+                              child: Container(
+                                width: 50,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: backgroundColor2,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "OK",
+                                    style: secondaryTextStyle.copyWith(
+                                        fontSize: 12),
+                                  ),
+                                ),
                               ),
                             )
                           ],

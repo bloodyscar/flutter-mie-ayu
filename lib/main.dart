@@ -8,6 +8,7 @@ import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/TransactionPage/checkout_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/detail_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
+import 'package:mie_ayu_rawalumbu/pages/main_page.dart';
 
 import 'package:mie_ayu_rawalumbu/pages/splash_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/auth_provider.dart';
@@ -15,6 +16,7 @@ import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
+import 'package:mie_ayu_rawalumbu/provider/transaction_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -43,6 +45,9 @@ class MyApp extends StatelessWidget {
         ListenableProvider<AuthProvider>(
           create: (context) => AuthProvider(),
         ),
+        ListenableProvider<TransactionProvider>(
+          create: (context) => TransactionProvider(),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -54,6 +59,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => SplashPage(),
           '/intro-page': (context) => IntroPage(),
           '/login-page': (context) => LoginPage(),
+          '/main-page': (context) => MainPage(),
           '/home-page': (context) => HomePage(),
           '/detail-page': (context) => DetailPage(),
           '/cart-page': (context) => CartPage(),

@@ -12,6 +12,11 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  getPayments() {
+    _carts = [];
+    print(_carts);
+  }
+
   getTotalQty() {
     var totalQty = 0;
     for (var item in _carts) {

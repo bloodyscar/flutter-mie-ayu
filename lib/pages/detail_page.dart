@@ -198,7 +198,7 @@ class DetailPage extends StatelessWidget {
                 onTap: () async {
                   await cartProvider.addCart(productProvider.getDetailProduct!);
                   showModalBottomSheet(
-                    backgroundColor: backgroundColor1,
+                    backgroundColor: boxDescriptionColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
@@ -210,7 +210,7 @@ class DetailPage extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                       width: double.infinity,
-                      height: 150,
+                      height: 200,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -236,7 +236,7 @@ class DetailPage extends StatelessWidget {
                               ),
                               Container(
                                 width: 130,
-                                height: 40,
+                                height: 50,
                                 decoration: BoxDecoration(
                                   color: backgroundColor2,
                                   borderRadius: BorderRadius.circular(12),

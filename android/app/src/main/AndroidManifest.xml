@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
    <application
-        android:label="mie_ayu_rawalumbu"
+        android:label="Mie Ayu"
         android:icon="@mipmap/ic_launcher">
 
         <!-- API KEY GOOGLE MAP -->

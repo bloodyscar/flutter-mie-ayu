@@ -8,9 +8,17 @@ di Mie Ayu Rawalumbu berlokasi di Pariwisata Raya, Bekasi Timur. Project ini mas
 
 **Client:** Flutter 
 
+<img src="https://storage.googleapis.com/cms-storage-bucket/70760bf1e88b184bb1bc.png" width="200" height="120" />
+
+
 **Server:** Firebase
 
-**Map:** Google Map API
+<img src="https://firebase.google.com/images/social.png" width="200" height="120" />
+
+
+**Map:** Google Map API (Free Credit 3 months from Januari 2022)
+
+<img src="https://developers.google.com/maps/images/google-maps-platform-1200x675.png" width="200" height="120" />
 
 
 ## Screenshots

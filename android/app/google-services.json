@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:856291487707:android:05c4e9af3b3cbb92b541fe",
+        "mobilesdk_app_id": "1:856291487707:android:fe08a9e906be525cb541fe",
         "android_client_info": {
-          "package_name": "com.example.mie_ayu_rawalumbu"
+          "package_name": "com.adithrw.mie_ayu_rawalumbu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "856291487707-jfse6elaftc7d3l4rnd2iq8t3apa9eim.apps.googleusercontent.com",
+          "client_id": "856291487707-atcgpnt3ueb1868bnp4gikd6h4636hqq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.mie_ayu_rawalumbu",
+            "package_name": "com.adithrw.mie_ayu_rawalumbu",
             "certificate_hash": "669722dfec87518516537cd47cabcd6f6925471f"
           }
         },

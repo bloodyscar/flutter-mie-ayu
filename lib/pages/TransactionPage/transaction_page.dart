@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,15 +6,10 @@ import 'package:mie_ayu_rawalumbu/map_page.dart';
 import 'package:mie_ayu_rawalumbu/models/bank_model.dart';
 import 'package:mie_ayu_rawalumbu/models/cart_model.dart';
 import 'package:mie_ayu_rawalumbu/models/courier_model.dart';
-import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
-import 'package:mie_ayu_rawalumbu/pages/TransactionPage/checkout_page.dart';
-import 'package:mie_ayu_rawalumbu/pages/TransactionPage/transaction_page.dart';
-import 'package:mie_ayu_rawalumbu/provider/auth_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/transaction_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
-import 'package:mie_ayu_rawalumbu/widget/button.dart';
 import 'package:mie_ayu_rawalumbu/widget/cart_list_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -30,7 +24,6 @@ class TransactionPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     GoogleMapProvider providerGoogle = Provider.of<GoogleMapProvider>(context);
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context);
 
@@ -73,7 +66,6 @@ class TransactionPage extends StatelessWidget {
       var date = DateTime.now().toString();
 
       var dateParse = DateTime.parse(date);
-      int time = dateParse.minute;
 
       var formattedTime = "${dateParse.hour}:${dateParse.minute}";
 
@@ -81,17 +73,14 @@ class TransactionPage extends StatelessWidget {
     }
 
     String getFutureTime() {
-      var date = DateTime.now().toString();
       var timeZero = DateTime.now().add(
         Duration(hours: 1),
       );
 
       var parseString = timeZero.toString();
 
-      var dateParse = DateTime.parse(date);
       var parse = DateTime.parse(parseString);
 
-      int time = dateParse.minute + 20;
 
       var formattedTime = "${parse.hour}:${parse.minute}";
 

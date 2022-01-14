@@ -1,9 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mie_ayu_rawalumbu/pages/IntroPage/intro_page.dart';
-import 'package:mie_ayu_rawalumbu/pages/main_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,8 +19,7 @@ class AuthService {
   // Sign in with email password
   Future<bool> signInEmailPassword(String email, String password) async {
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -80,7 +75,7 @@ class AuthService {
   // signout
   static Future<void> signOut() async {
     FirebaseAuth.instance.signOut();
-    
+
     print("Logout Berhasil");
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,35 +17,77 @@ class _IntroPageState extends State<IntroPage> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
   List<String> imgList = [
-    "assets/intro-1.png",
-    "assets/intro-2.png",
-    "assets/intro-3.png",
+    "https://res.cloudinary.com/adithrw/image/upload/v1642079797/intro-1_yungfx.png",
+    "https://res.cloudinary.com/adithrw/image/upload/v1642079932/intro-2_edrlpy.png",
+    "https://res.cloudinary.com/adithrw/image/upload/v1642079943/intro-3_dlcyhl.png",
   ];
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSlider = [
-      Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.8,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/intro-1.png"), fit: BoxFit.cover),
+      CachedNetworkImage(
+        imageUrl:
+            "https://res.cloudinary.com/adithrw/image/upload/v1642079797/intro-1_yungfx.png",
+        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+          child: Container(
+            width: 10,
+            height: 10,
+            child: CircularProgressIndicator(
+              value: downloadProgress.progress,
+              strokeWidth: 1,
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+        imageBuilder: (context, imageProvider) => Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.8,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+          ),
         ),
       ),
-      Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.8,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/intro-2.png"), fit: BoxFit.cover),
+      CachedNetworkImage(
+        imageUrl:
+            "https://res.cloudinary.com/adithrw/image/upload/v1642079932/intro-2_edrlpy.png",
+        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+          child: Container(
+            width: 10,
+            height: 10,
+            child: CircularProgressIndicator(
+              value: downloadProgress.progress,
+              strokeWidth: 1,
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+        imageBuilder: (context, imageProvider) => Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.8,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+          ),
         ),
       ),
-      Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.8,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/intro-3.png"), fit: BoxFit.cover),
+      CachedNetworkImage(
+        imageUrl:
+            "https://res.cloudinary.com/adithrw/image/upload/v1642079943/intro-3_dlcyhl.png",
+        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+          child: Container(
+            width: 10,
+            height: 10,
+            child: CircularProgressIndicator(
+              value: downloadProgress.progress,
+              strokeWidth: 1,
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+        imageBuilder: (context, imageProvider) => Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.8,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+          ),
         ),
       ),
     ];
@@ -165,11 +208,13 @@ class _IntroPageState extends State<IntroPage> {
     }
 
     return Scaffold(
-      body: Stack(
-        children: [
-          content(),
-        ],
-      ),
+      body: FutureBuilder(builder: (context, snapshot) {
+        return Stack(
+          children: [
+            content(),
+          ],
+        );
+      }),
     );
   }
 }

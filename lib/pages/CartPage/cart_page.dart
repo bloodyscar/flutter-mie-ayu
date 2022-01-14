@@ -7,7 +7,6 @@ import 'package:mie_ayu_rawalumbu/pages/TransactionPage/transaction_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
-import 'package:mie_ayu_rawalumbu/widget/button.dart';
 import 'package:mie_ayu_rawalumbu/widget/cart_list_widget.dart';
 import 'package:provider/provider.dart';
 

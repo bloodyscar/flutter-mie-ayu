@@ -9,7 +9,7 @@ class AuthProvider with ChangeNotifier {
   bool? status;
 
   Future<bool> loginUser(String email, String password) async {
-    var getUserLogin = await AuthService().signInEmailPassword(email, password);
+    await AuthService().signInEmailPassword(email, password);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", true);

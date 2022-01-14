@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
@@ -18,12 +19,27 @@ class _ChatPageState extends State<ChatPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: width,
-            height: height * 0.4,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/n.png"), fit: BoxFit.cover),
+          CachedNetworkImage(
+            imageUrl:
+                "https://res.cloudinary.com/adithrw/image/upload/v1642080565/n_yrkrer.png",
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                Center(
+              child: Container(
+                width: 10,
+                height: 10,
+                child: CircularProgressIndicator(
+                  value: downloadProgress.progress,
+                  strokeWidth: 1,
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            imageBuilder: (context, imageProvider) => Container(
+              width: width,
+              height: height * 0.4,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
             ),
           ),
           Text(

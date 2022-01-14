@@ -6,7 +6,7 @@ dibuat dengan Flutter. Aplikasi tersebut menyediakan informasi tentang menu masa
 di Mie Ayu Rawalumbu berlokasi di Pariwisata Raya, Bekasi Timur. Project ini masih tahap DEMO untuk keperluan portfolio
 ## Tech Stack
 
-**Client:** Flutter <img src="https://camo.githubusercontent.com/..." data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="200" />
+**Client:** Flutter ![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png)
 
 **Server:** Firebase
 

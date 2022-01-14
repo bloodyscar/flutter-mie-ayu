@@ -12,6 +12,8 @@ di Mie Ayu Rawalumbu berlokasi di Pariwisata Raya, Bekasi Timur. Project ini mas
 
 
 **Server:** Firebase
+<img src="https://firebase.google.com/images/brand-guidelines/logo-standard.png?hl=id" width="90" height="30" />
+
 
 **Map:** Google Map API
 

@@ -35,3 +35,6 @@ di Mie Ayu Rawalumbu berlokasi di Pariwisata Raya, Bekasi Timur. Project ini mas
 Available on Google Playstore 
 
 *on progress review by team google playstore*
+
+## UPDATED
+The Apps succeessfully deployed, link : https://play.google.com/store/apps/details?id=com.adithrw.mie_ayu_rawalumbu

@@ -37,4 +37,4 @@ Available on Google Playstore
 *on progress review by team google playstore*
 
 ## UPDATED
-The Apps succeessfully deployed, link : https://play.google.com/store/apps/details?id=com.adithrw.mie_ayu_rawalumbu
+The Apps successfully launching, link : https://play.google.com/store/apps/details?id=com.adithrw.mie_ayu_rawalumbu

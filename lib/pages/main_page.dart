@@ -3,6 +3,7 @@ import 'package:mie_ayu_rawalumbu/pages/ChatPage/chat_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/HomePage/home_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/ProfilePage/profile_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/WishlistPage/wishlist_page.dart';
+import 'package:mie_ayu_rawalumbu/service/product_service.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  ProductService productService = ProductService();
   int currentIndex = 0;
   final screens = [
     const HomePage(),
@@ -23,9 +25,23 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+  return Scaffold(
       backgroundColor: backgroundColor1,
-      body: screens[currentIndex],
+      body: FutureBuilder(
+          future: Future.delayed(
+            Duration(milliseconds: 500),
+            () => productService.getAllProducts(),
+          ),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return screens[currentIndex];
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 5,
+              ),
+            );
+          }),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24),

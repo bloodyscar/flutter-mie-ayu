@@ -17,7 +17,8 @@ class CategoryListWidget extends StatelessWidget {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     return GestureDetector(
       onTap: () {
-        Get.toNamed("/detail-page", arguments: productProvider.getDetailId(filterProduct));
+        Get.toNamed("/detail-page",
+            arguments: productProvider.getDetailId(filterProduct));
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -56,16 +57,9 @@ class CategoryListWidget extends StatelessWidget {
             ),
             CachedNetworkImage(
               imageUrl: "${filterProduct.imageUrl}",
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Center(
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  child: CircularProgressIndicator(
-                    value: downloadProgress.progress,
-                    strokeWidth: 1,
-                  ),
-                ),
+              placeholder: (context, string) => Container(
+                height: 100,
+                color: Colors.grey.shade300,
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
               imageBuilder: (context, imageProvider) => Container(

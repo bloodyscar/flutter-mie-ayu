@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mie_ayu_rawalumbu/pages/AuthPage/registration_page.dart';
 import 'package:mie_ayu_rawalumbu/pages/login_page.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class IntroPage extends StatefulWidget {
   IntroPage({Key? key}) : super(key: key);
@@ -21,6 +22,13 @@ class _IntroPageState extends State<IntroPage> {
     "https://res.cloudinary.com/adithrw/image/upload/v1642079932/intro-2_edrlpy.png",
     "https://res.cloudinary.com/adithrw/image/upload/v1642079943/intro-3_dlcyhl.png",
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Permission.location.request();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSlider = [

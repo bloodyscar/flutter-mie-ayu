@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
+import 'package:mie_ayu_rawalumbu/provider/favourite_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/theme.dart';
 import 'package:provider/provider.dart';
@@ -14,22 +15,18 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    FavouriteProvider favouriteProvider =
+        Provider.of<FavouriteProvider>(context);
 
     Widget header() {
       return Stack(
         children: [
           CachedNetworkImage(
             imageUrl: "${productProvider.getDetailProduct!.imageUrl}",
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                Center(
-              child: Container(
-                width: 10,
-                height: 10,
-                child: CircularProgressIndicator(
-                  value: downloadProgress.progress,
-                  strokeWidth: 1,
-                ),
-              ),
+            placeholder: (context, string) => Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.5,
+              color: Colors.grey.shade300,
             ),
             errorWidget: (context, url, error) => Icon(Icons.error),
             imageBuilder: (context, imageProvider) => Container(
@@ -73,25 +70,55 @@ class DetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 5),
-                        ),
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Image.asset(
-                      "assets/shape.png",
-                      color: backgroundColor2,
+                  GestureDetector(
+                    onTap: () {
+                      favouriteProvider
+                          .addFavourite(productProvider.getDetailProduct!);
+                      if (favouriteProvider
+                          .isFav(productProvider.getDetailProduct!)) {
+                        Get.snackbar(
+                          "Favourite",
+                          "Favourite Has been added",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.blue,
+                          duration: Duration(milliseconds: 1000),
+                        );
+                      } else {
+                        Get.snackbar(
+                          "Favourite",
+                          "Favourite Has been remove",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          duration: Duration(milliseconds: 1000),
+                        );
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: favouriteProvider
+                              .isFav(productProvider.getDetailProduct!)
+                          ? Image.asset(
+                              "assets/shape.png",
+                              color: backgroundColor2,
+                            )
+                          : Image.asset(
+                              "assets/wishlist.png",
+                              color: backgroundColor2,
+                            ),
                     ),
                   ),
                 ],

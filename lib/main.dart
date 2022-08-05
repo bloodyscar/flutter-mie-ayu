@@ -14,16 +14,20 @@ import 'package:mie_ayu_rawalumbu/pages/splash_page.dart';
 import 'package:mie_ayu_rawalumbu/provider/auth_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/cart_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/category_provider.dart';
+import 'package:mie_ayu_rawalumbu/provider/favourite_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/google_map_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/product_provider.dart';
 import 'package:mie_ayu_rawalumbu/provider/transaction_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -50,6 +54,9 @@ class MyApp extends StatelessWidget {
         ),
         ListenableProvider<AuthProvider>(
           create: (context) => AuthProvider(),
+        ),
+        ListenableProvider<FavouriteProvider>(
+          create: (context) => FavouriteProvider(),
         ),
       ],
       child: GestureDetector(

@@ -40,17 +40,10 @@ class CategoryCard extends StatelessWidget {
           children: [
             CachedNetworkImage(
               imageUrl: "${categoryModel.imageCategory}",
-              placeholder: (context, string) {
-                return Shimmer.fromColors(
-                  baseColor: Colors.grey,
-                  highlightColor: Colors.grey.shade400,
-                  child: Container(
-                    width: double.infinity,
-                    height: 80,
-                    color: Colors.grey,
-                  ),
-                );
-              },
+              placeholder: (context, string) => Container(
+                height: 90,
+                color: Colors.grey.shade300,
+              ),
               errorWidget: (context, url, error) => Icon(Icons.error),
               imageBuilder: (context, imageProvider) => Container(
                 height: 90,

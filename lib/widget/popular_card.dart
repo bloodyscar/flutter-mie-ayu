@@ -24,20 +24,15 @@ class PopularCard extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed("/detail-page", arguments: productProvider.getDetailId(product));
+              Get.toNamed("/detail-page",
+                  arguments: productProvider.getDetailId(product));
             },
             child: CachedNetworkImage(
               imageUrl: "${product.imageUrl}",
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Center(
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  child: CircularProgressIndicator(
-                    value: downloadProgress.progress,
-                    strokeWidth: 1,
-                  ),
-                ),
+              placeholder: (context, string) => Container(
+                width: 140,
+                height: 100,
+                color: Colors.grey.shade300,
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
               imageBuilder: (context, imageProvider) => Container(
